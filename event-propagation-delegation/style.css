@@ -1,0 +1,335 @@
+/* =============================================
+   Base & Reset
+   ============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #f0f4ff;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+/* =============================================
+   Header
+   ============================================= */
+header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  text-align: center;
+  padding: 2.5rem 1rem 2rem;
+}
+
+header h1 { font-size: 2.2rem; margin-bottom: .4rem; }
+.subtitle  { opacity: .85; font-size: 1.05rem; }
+
+/* =============================================
+   Main layout
+   ============================================= */
+main {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* =============================================
+   Section cards
+   ============================================= */
+.card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.09);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-label {
+  position: absolute;
+  top: 1.1rem; right: 1.4rem;
+  background: #667eea;
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  padding: .25rem .7rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.card h2 { font-size: 1.55rem; margin-bottom: .6rem; }
+
+.description {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+/* =============================================
+   Part 1 — Nested boxes
+   ============================================= */
+.toggle-row {
+  margin-bottom: 1.2rem;
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  cursor: pointer;
+  font-size: .95rem;
+  color: #444;
+}
+
+.toggle-label input { width: 18px; height: 18px; cursor: pointer; }
+
+.box-arena {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0 1.5rem;
+}
+
+.box {
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .15s, filter .15s;
+  position: relative;
+  user-select: none;
+}
+
+.box:hover { transform: scale(1.03); filter: brightness(1.05); }
+
+/* Individual box colors & sizes */
+.outer-box {
+  width: 340px; height: 340px;
+  background: #dbeafe;
+  border: 3px solid #3b82f6;
+  gap: 0;
+}
+
+.middle-box {
+  width: 220px; height: 220px;
+  background: #dcfce7;
+  border: 3px solid #22c55e;
+}
+
+.inner-box {
+  width: 120px; height: 120px;
+  background: #fef9c3;
+  border: 3px solid #eab308;
+  text-align: center;
+  font-size: .85rem;
+}
+
+.box-label {
+  font-weight: 700;
+  font-size: .9rem;
+  position: absolute;
+  top: 8px; left: 12px;
+  pointer-events: none;
+}
+
+.outer-box  > .box-label { color: #1d4ed8; }
+.middle-box > .box-label { color: #15803d; }
+.inner-box  > .box-label { color: #a16207; }
+
+/* Flash animation when event fires */
+@keyframes flash {
+  0%   { filter: brightness(1); }
+  30%  { filter: brightness(1.6); }
+  100% { filter: brightness(1); }
+}
+.flash { animation: flash .5s ease-out; }
+
+/* =============================================
+   Part 2 — Barnyard / Delegation
+   ============================================= */
+.code-hint {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  border-radius: 10px;
+  padding: .75rem 1.2rem;
+  font-family: 'Courier New', monospace;
+  font-size: .9rem;
+  margin-bottom: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.code-hint .hl   { color: #89dceb; font-weight: 700; }
+.code-hint .arrow { color: #a6e3a1; font-size: .85rem; }
+
+.barnyard-wrapper {
+  background: #fffbeb;
+  border: 2px dashed #fbbf24;
+  border-radius: 14px;
+  padding: 1.2rem;
+  margin-bottom: 1.4rem;
+}
+
+.fence-label {
+  font-size: .82rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  margin-bottom: .9rem;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.barnyard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .85rem;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.animal {
+  background: #fff;
+  border: 2px solid #d1d5db;
+  border-radius: 12px;
+  width: 90px; height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+  cursor: pointer;
+  transition: transform .15s, border-color .15s, box-shadow .15s;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+.animal span { font-size: .75rem; color: #555; }
+
+.animal:hover {
+  transform: translateY(-4px);
+  border-color: #667eea;
+  box-shadow: 0 6px 16px rgba(102,126,234,.25);
+}
+
+/* Badge for "new" animals */
+.animal.new-animal {
+  border-color: #f97316;
+  position: relative;
+}
+.animal.new-animal::after {
+  content: 'NEW';
+  position: absolute;
+  top: -8px; right: -8px;
+  background: #f97316;
+  color: #fff;
+  font-size: .6rem;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 6px;
+}
+
+.add-btn {
+  background: linear-gradient(135deg, #f97316, #ef4444);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: .6rem 1.3rem;
+  font-size: .95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity .2s, transform .15s;
+}
+.add-btn:hover { opacity: .88; transform: scale(1.03); }
+
+/* =============================================
+   Log panel (shared)
+   ============================================= */
+.log-panel {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.log-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .6rem;
+}
+
+.log-header h3 { font-size: 1rem; color: #334155; }
+
+.clear-btn {
+  background: #e2e8f0;
+  border: none;
+  border-radius: 7px;
+  padding: .3rem .8rem;
+  font-size: .8rem;
+  cursor: pointer;
+  color: #475569;
+  transition: background .2s;
+}
+.clear-btn:hover { background: #cbd5e1; }
+
+#prop-log, #del-log {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+#prop-log li, #del-log li {
+  padding: .45rem .8rem;
+  border-radius: 8px;
+  font-size: .88rem;
+  animation: slideIn .25s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.log-hint { color: #94a3b8; font-style: italic; }
+
+/* Propagation log colors matching the boxes */
+.log-outer  { background: #dbeafe; color: #1e40af; border-left: 4px solid #3b82f6; }
+.log-middle { background: #dcfce7; color: #166534; border-left: 4px solid #22c55e; }
+.log-inner  { background: #fef9c3; color: #713f12; border-left: 4px solid #eab308; }
+.log-stop   { background: #fee2e2; color: #991b1b; border-left: 4px solid #ef4444; font-style: italic; }
+
+/* Delegation log color */
+.log-delegate { background: #f3e8ff; color: #6b21a8; border-left: 4px solid #a855f7; }
+.log-info     { background: #e0f2fe; color: #0c4a6e; border-left: 4px solid #0ea5e9; font-style: italic; }
+
+/* =============================================
+   Footer
+   ============================================= */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: #94a3b8;
+  font-size: .85rem;
+}
+
+/* =============================================
+   Responsive
+   ============================================= */
+@media (max-width: 480px) {
+  header h1 { font-size: 1.6rem; }
+  .outer-box  { width: 280px; height: 280px; }
+  .middle-box { width: 180px; height: 180px; }
+  .inner-box  { width: 100px; height: 100px; }
+}

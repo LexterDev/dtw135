@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Propagation & Delegation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🎯 Event Propagation &amp; Delegation</h1>
+    <p class="subtitle">Click around and watch the magic happen!</p>
+  </header>
+
+  <main>
+
+    <!-- ===================== PART 1: PROPAGATION ===================== -->
+    <section class="card" id="propagation-section">
+      <div class="section-label">Part 1</div>
+      <h2>🫧 Event Propagation (Bubbling)</h2>
+      <p class="description">
+        When you click an element, the event <strong>fires on that element first</strong>,
+        then <em>bubbles up</em> through every parent until it reaches the top.
+        Click on the inner boxes and watch the log!
+      </p>
+
+      <div class="toggle-row">
+        <label class="toggle-label">
+          <input type="checkbox" id="stop-propagation-toggle" />
+          <span class="toggle-text">Stop propagation on <strong>MIDDLE</strong> box</span>
+        </label>
+      </div>
+
+      <div class="box-arena">
+        <div class="box outer-box" id="outer-box">
+          <span class="box-label">🌍 OUTER</span>
+          <div class="box middle-box" id="middle-box">
+            <span class="box-label">🌿 MIDDLE</span>
+            <div class="box inner-box" id="inner-box">
+              <span class="box-label">🎯 INNER</span>
+              <small>← Start here!</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="log-panel">
+        <div class="log-header">
+          <h3>📋 Event Log</h3>
+          <button class="clear-btn" onclick="clearLog('prop-log')">Clear</button>
+        </div>
+        <ul id="prop-log">
+          <li class="log-hint">Click a box above to see events here...</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== PART 2: DELEGATION ===================== -->
+    <section class="card" id="delegation-section">
+      <div class="section-label">Part 2</div>
+      <h2>🎪 Event Delegation</h2>
+      <p class="description">
+        Instead of adding a listener to <em>every</em> animal card, we add
+        <strong>ONE listener on the parent</strong> (the barnyard fence).
+        It handles clicks for all animals — even ones added later!
+      </p>
+
+      <div class="code-hint">
+        <code>barnyard.<span class="hl">addEventListener</span>('click', handler)</code>
+        <span class="arrow">⬅ Only this one line!</span>
+      </div>
+
+      <div class="barnyard-wrapper">
+        <div class="fence-label">🔵 Parent listener is here (the barnyard)</div>
+        <div class="barnyard" id="barnyard">
+          <div class="animal" data-name="Cow"     data-sound="Mooo! 🐄">🐄<br>Cow</div>
+          <div class="animal" data-name="Pig"     data-sound="Oink! 🐷">🐷<br>Pig</div>
+          <div class="animal" data-name="Chicken" data-sound="Cluck! 🐔">🐔<br>Chicken</div>
+          <div class="animal" data-name="Horse"   data-sound="Neigh! 🐴">🐴<br>Horse</div>
+        </div>
+        <button class="add-btn" id="add-animal-btn">＋ Add a New Animal</button>
+      </div>
+
+      <div class="log-panel">
+        <div class="log-header">
+          <h3>📋 Delegation Log</h3>
+          <button class="clear-btn" onclick="clearLog('del-log')">Clear</button>
+        </div>
+        <ul id="del-log">
+          <li class="log-hint">Click an animal above to see events here...</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>DTW135 &mdash; Web Development Basics &bull; Event Propagation &amp; Delegation</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
