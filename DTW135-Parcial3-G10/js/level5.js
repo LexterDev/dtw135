@@ -64,7 +64,7 @@ function initLevel5() {
         btnExport.style.display = 'inline-block'
         btnProcess.textContent = '✔ PROCESADO'
         btnProcess.className   = 'nes-btn nes-btn-success'
-        showAlert('l5-alert', true, '✔ PORTAL CUÁNTICO ACTIVADO — EXPORTA Y COMPLETA LA MISIÓN')
+        showAlert('l5-alert', true, '✔ ANÁLISIS COMPLETADO — DESCARGA EL JSON PARA COMPLETAR LA MISIÓN')
         Audio.play('complete')
         completeLevel(5)
         worker.terminate()
@@ -98,6 +98,7 @@ function initLevel5() {
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
     document.getElementById('l5-btn-victory').style.display = 'inline-block'
+    showAlert('l5-alert', true, '✔ JSON DESCARGADO — HAZ CLIC EN "MISIÓN CUMPLIDA" PARA TERMINAR')
   })
 }
 
