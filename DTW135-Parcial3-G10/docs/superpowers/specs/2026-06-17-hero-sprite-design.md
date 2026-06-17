@@ -64,7 +64,29 @@ Para no duplicar los 23 `<rect>` del sprite en cada uno de los 5 niveles, se def
 ```html
 <svg style="display:none" aria-hidden="true">
   <symbol id="hero-idle" viewBox="0 0 16 18">
-    <!-- los 23 <rect> del sprite aprobado -->
+    <rect x="6" y="0" width="4" height="1" fill="#E52521"/>
+    <rect x="4" y="1" width="8" height="1" fill="#E52521"/>
+    <rect x="3" y="2" width="10" height="1" fill="#E52521"/>
+    <rect x="3" y="3" width="10" height="1" fill="#C81E1E"/>
+    <rect x="4" y="4" width="8" height="1" fill="#F4B97A"/>
+    <rect x="4" y="5" width="8" height="1" fill="#F4B97A"/>
+    <rect x="5" y="5" width="1" height="1" fill="#222"/>
+    <rect x="9" y="5" width="1" height="1" fill="#222"/>
+    <rect x="3" y="6" width="1" height="1" fill="#F4B97A"/>
+    <rect x="4" y="6" width="8" height="1" fill="#6B3E1E"/>
+    <rect x="12" y="6" width="1" height="1" fill="#F4B97A"/>
+    <rect x="5" y="7" width="6" height="1" fill="#F4B97A"/>
+    <rect x="2" y="8" width="1" height="2" fill="#F4B97A"/>
+    <rect x="13" y="8" width="1" height="2" fill="#F4B97A"/>
+    <rect x="3" y="8" width="10" height="1" fill="#E52521"/>
+    <rect x="3" y="9" width="10" height="1" fill="#2A4B8D"/>
+    <rect x="5" y="9" width="1" height="4" fill="#E52521"/>
+    <rect x="10" y="9" width="1" height="4" fill="#E52521"/>
+    <rect x="3" y="10" width="10" height="3" fill="#2A4B8D"/>
+    <rect x="3" y="13" width="4" height="3" fill="#2A4B8D"/>
+    <rect x="9" y="13" width="4" height="3" fill="#2A4B8D"/>
+    <rect x="2" y="16" width="5" height="2" fill="#5C3A21"/>
+    <rect x="9" y="16" width="5" height="2" fill="#5C3A21"/>
   </symbol>
 </svg>
 ```
