@@ -353,3 +353,26 @@ body {
 .victory-sub  { font-size: 9px; color: #fff; margin-bottom: 20px; line-height: 2; }
 .victory-score-label { font-size: 8px; color: #aaa; margin-bottom: 6px; }
 .victory-score { font-size: 16px; color: #FBD000; margin-bottom: 24px; }
+
+/* ── FLOATING CLOUDS ── */
+.cloud-sprite {
+  position: absolute;
+  shape-rendering: crispEdges;
+  pointer-events: none;
+}
+.cloud-far {
+  top: 60px;
+  width: 90px;
+  height: 34px;
+  animation: cloudDrift 42s linear infinite;
+}
+.cloud-near {
+  top: 115px;
+  width: 150px;
+  height: 56px;
+  animation: cloudDrift 24s linear infinite;
+}
+@keyframes cloudDrift {
+  0%   { left: -20%; }
+  100% { left: 120%; }
+}
