@@ -1457,7 +1457,7 @@ document.addEventListener('DOMContentLoaded', initLevel5)
   3. Al terminar → tabla top 10 temperaturas, tabla top 10 presiones, card de resumen
   4. Click "EXPORTAR JSON" → descarga `resultados-portal.json`
   5. Abrir el JSON descargado → verificar que tiene todas las propiedades: `avgTemp`, `avgHum`, `avgPres`, `top10Temp`, `top10Pres`, `validCount`, `filteredCount`
-  6. Pantalla de victoria aparece automáticamente con score final
+  6. Click "🏆 MISIÓN CUMPLIDA" → pantalla de victoria aparece con score final
 
 - [ ] **Commit**
 ```bash
