@@ -62,7 +62,6 @@ function initLevel5() {
         progWrap.style.display = 'none'
         statCard.style.display = 'block'
         btnExport.style.display = 'inline-block'
-        document.getElementById('l5-btn-victory').style.display = 'inline-block'
         btnProcess.textContent = '✔ PROCESADO'
         btnProcess.className   = 'nes-btn nes-btn-success'
         showAlert('l5-alert', true, '✔ PORTAL CUÁNTICO ACTIVADO — EXPORTA Y COMPLETA LA MISIÓN')
@@ -98,6 +97,7 @@ function initLevel5() {
     a.click()
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
+    document.getElementById('l5-btn-victory').style.display = 'inline-block'
   })
 }
 
