@@ -28,9 +28,9 @@ function drawMap(canvas, lat, lng) {
   })
 
   // rectángulos (edificios)
-  ctx.fillStyle = '#2d6a4f'
+  ctx.fillStyle = '#2d6a4f';
   [[10,8,55,28],[70,8,42,28],[10,H*0.44,42,22]].forEach(([x,y,w,h]) => ctx.fillRect(x,y,w,h))
-  ctx.fillStyle = '#1b4332'
+  ctx.fillStyle = '#1b4332';
   [[W*0.34,8,68,24],[W*0.34,H*0.44,50,20],[W*0.66,8,54,34],[W*0.66,H*0.44+4,58,16]].forEach(([x,y,w,h]) => ctx.fillRect(x,y,w,h))
 
   // círculo (zona especial / plaza)
