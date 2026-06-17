@@ -33,6 +33,7 @@ body {
   background: #5C94FC;
   padding-top: 52px;
   position: relative;
+  overflow-x: hidden;
 }
 .level-screen::after {
   content: '';
