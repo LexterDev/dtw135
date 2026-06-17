@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Cámara de los Cinco Desafíos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- HUD fijo en la parte superior -->
+  <div id="hud" class="nes-hud">
+    <div class="hud-col">
+      <span class="hud-label">JUGADOR</span>
+      <span id="hud-score" class="hud-value">000000</span>
+    </div>
+    <div class="hud-col hud-center">
+      <span id="hud-coins">🪙×00</span>
+      <span id="hud-world">W1-1</span>
+    </div>
+    <div class="hud-col hud-right">
+      <span class="hud-label">VIDAS</span>
+      <span class="hud-value">♥♥♥</span>
+    </div>
+  </div>
+
+  <!-- ── PANTALLAS DE NIVEL ── -->
+  <section id="level-1" class="level-screen">
+    <div class="screen-body">
+      <h2 class="level-title">EL GUARDIÁN</h2>
+      <div class="nes-dialog">
+        <div class="portrait">📡</div>
+        <span>▶ Sistema bloqueado.<br>Necesito tu ubicación<br>para continuar...<span class="cursor-blink">█</span></span>
+      </div>
+      <div id="l1-alert" class="nes-alert" style="display:none"></div>
+      <div class="data-row">
+        LAT: <span id="l1-lat" class="data-pending">esperando...</span><br>
+        LNG: <span id="l1-lng" class="data-pending">esperando...</span>
+      </div>
+      <div class="btn-group-nes">
+        <button id="l1-btn-get" class="nes-btn nes-btn-primary">▶ OBTENER UBICACIÓN</button>
+      </div>
+      <div class="btn-group-nes">
+        <button id="l1-btn-next" class="nes-btn nes-btn-disabled" disabled>🔒 SIGUIENTE NIVEL</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="level-2" class="level-screen" style="display:none">
+    <div class="screen-body">
+      <h2 class="level-title">CARTÓGRAFO</h2>
+      <div class="nes-dialog">
+        <div class="portrait">🗺</div>
+        <span>▶ Dibuja el mapa y<br>marca tu posición<br>en el canvas...<span class="cursor-blink">█</span></span>
+      </div>
+      <div id="l2-alert" class="nes-alert" style="display:none"></div>
+      <canvas id="l2-canvas" class="nes-canvas"></canvas>
+      <div class="btn-group-nes">
+        <button id="l2-btn-draw" class="nes-btn nes-btn-primary">▶ DIBUJAR MAPA</button>
+        <button id="l2-btn-next" class="nes-btn nes-btn-disabled" disabled>🔒 SIGUIENTE NIVEL</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="level-3" class="level-screen" style="display:none">
+    <div class="screen-body">
+      <h2 class="level-title">EXPLORADOR</h2>
+      <div class="nes-dialog">
+        <div class="portrait">📷</div>
+        <span>▶ Necesito evidencia.<br>Accede a la cámara<br>y captura la escena.<span class="cursor-blink">█</span></span>
+      </div>
+      <div id="l3-alert" class="nes-alert" style="display:none"></div>
+      <div id="l3-cam-placeholder" class="nes-cam-placeholder">
+        <span>📷</span>
+        <span class="cam-label">SIN ACCESO</span>
+      </div>
+      <video id="l3-video" class="nes-video" autoplay playsinline style="display:none"></video>
+      <div id="l3-photo-strip" class="photo-strip"></div>
+      <div class="btn-group-nes">
+        <button id="l3-btn-cam" class="nes-btn nes-btn-primary">▶ ACTIVAR CÁMARA</button>
+        <button id="l3-btn-capture" class="nes-btn nes-btn-disabled" disabled>📸 CAPTURAR</button>
+      </div>
+      <div class="btn-group-nes">
+        <button id="l3-btn-next" class="nes-btn nes-btn-disabled" disabled>🔒 SIGUIENTE NIVEL</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="level-4" class="level-screen" style="display:none">
+    <div class="screen-body">
+      <h2 class="level-title">NÚCLEO</h2>
+      <div class="nes-dialog">
+        <div class="portrait">⚙</div>
+        <span>▶ Analiza 20,000<br>lecturas de sensores.<br>Worker en standby.<span class="cursor-blink">█</span></span>
+      </div>
+      <div id="l4-alert" class="nes-alert" style="display:none"></div>
+      <div id="l4-progress-wrap" style="display:none">
+        <div id="l4-progress-label" class="progress-label">PROCESANDO... 0%</div>
+        <div class="nes-progress-wrap">
+          <div id="l4-progress-fill" class="nes-progress-fill" style="width:0%"></div>
+        </div>
+        <p class="worker-hint">● La interfaz sigue activa mientras el Worker trabaja</p>
+      </div>
+      <div id="l4-stat-card" class="nes-stat-card" style="display:none">
+        <div class="stat-card-title">★ SENSORES ANALIZADOS</div>
+        <div class="stat-row"><span>TEMP. PROMEDIO</span><span id="l4-temp-avg" class="stat-val">---</span></div>
+        <div class="stat-row"><span>TEMP. MÁXIMA</span><span id="l4-temp-max" class="stat-val">---</span></div>
+        <div class="stat-row"><span>TEMP. MÍNIMA</span><span id="l4-temp-min" class="stat-val">---</span></div>
+        <div class="stat-row"><span>HUM. PROMEDIO</span><span id="l4-hum-avg" class="stat-val">---</span></div>
+        <div class="stat-row"><span>HUM. MÁXIMA</span><span id="l4-hum-max" class="stat-val">---</span></div>
+        <div class="stat-row"><span>HUM. MÍNIMA</span><span id="l4-hum-min" class="stat-val">---</span></div>
+        <div class="stat-row"><span>REGISTROS</span><span id="l4-count" class="stat-val">---</span></div>
+      </div>
+      <div class="btn-group-nes">
+        <button id="l4-btn-process" class="nes-btn nes-btn-primary">▶ GENERAR Y PROCESAR</button>
+        <button id="l4-btn-next" class="nes-btn nes-btn-disabled" disabled>🔒 SIGUIENTE NIVEL</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="level-5" class="level-screen" style="display:none">
+    <div class="screen-body">
+      <h2 class="level-title">PORTAL</h2>
+      <div class="nes-dialog">
+        <div class="portrait">⚡</div>
+        <span>▶ 250,000 registros.<br>Filtra negativos y<br>calcula el top 10.<span class="cursor-blink">█</span></span>
+      </div>
+      <div id="l5-alert" class="nes-alert" style="display:none"></div>
+      <div id="l5-progress-wrap" style="display:none">
+        <div id="l5-progress-label" class="progress-label">PROCESANDO... 0%</div>
+        <div class="nes-progress-wrap">
+          <div id="l5-progress-fill" class="nes-progress-fill" style="width:0%"></div>
+        </div>
+        <p class="worker-hint">● Transfiriendo 250k registros al Worker...</p>
+      </div>
+      <div id="l5-stat-card" class="nes-stat-card" style="display:none">
+        <div class="stat-card-title">★ PORTAL CUÁNTICO — RESULTADOS</div>
+        <div class="top10-cols">
+          <div>
+            <div class="top-list-title">🌡 TOP 10 TEMP.</div>
+            <div id="l5-top10-temp"></div>
+          </div>
+          <div>
+            <div class="top-list-title">🔴 TOP 10 PRESIÓN</div>
+            <div id="l5-top10-pres"></div>
+          </div>
+        </div>
+        <div class="stat-row"><span>PROM. TEMP.</span><span id="l5-avg-temp" class="stat-val">---</span></div>
+        <div class="stat-row"><span>PROM. HUM.</span><span id="l5-avg-hum" class="stat-val">---</span></div>
+        <div class="stat-row"><span>PROM. PRESIÓN</span><span id="l5-avg-pres" class="stat-val">---</span></div>
+        <div class="stat-row"><span>VÁLIDOS</span><span id="l5-valid" class="stat-val">---</span></div>
+        <div class="stat-row"><span>FILTRADOS</span><span id="l5-filtered" class="stat-val">---</span></div>
+      </div>
+      <div class="btn-group-nes">
+        <button id="l5-btn-process" class="nes-btn nes-btn-primary">▶ GENERAR 250K</button>
+        <button id="l5-btn-export" class="nes-btn nes-btn-secondary" style="display:none">💾 EXPORTAR JSON</button>
+        <button id="l5-btn-victory" class="nes-btn nes-btn-success" style="display:none">🏆 MISIÓN CUMPLIDA</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stage Clear overlay -->
+  <div id="stage-clear-overlay" class="sc-overlay" style="display:none">
+    <div class="sc-box">
+      <div class="sc-main">STAGE<br>CLEAR!</div>
+      <div class="sc-world"></div>
+      <div class="sc-pts"></div>
+      <button id="sc-btn-continue" class="nes-btn nes-btn-primary">▶ CONTINUAR</button>
+    </div>
+  </div>
+
+  <!-- Victory overlay -->
+  <div id="victory-overlay" class="victory-overlay" style="display:none">
+    <div class="victory-box">
+      <div class="victory-stars">★ ★ ★</div>
+      <div class="victory-main">MISIÓN<br>CUMPLIDA</div>
+      <div class="victory-sub">ACCESO AL SISTEMA RESTAURADO</div>
+      <div class="victory-score-label">PUNTUACIÓN FINAL</div>
+      <div id="victory-score" class="victory-score">000000</div>
+      <button id="victory-restart" class="nes-btn nes-btn-primary">▶ JUGAR DE NUEVO</button>
+    </div>
+  </div>
+
+  <script src="js/audio.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/level1.js"></script>
+  <script src="js/level2.js"></script>
+  <script src="js/level3.js"></script>
+  <script src="js/level4.js"></script>
+  <script src="js/level5.js"></script>
+</body>
+</html>
