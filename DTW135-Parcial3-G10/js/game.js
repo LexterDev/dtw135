@@ -95,5 +95,7 @@ window.goToLevel = function(n) {
 
 // Inicializar
 document.addEventListener('DOMContentLoaded', () => {
-  showLevel(1)
+  // Acceso directo opcional vía URL, ej. ?nivel=3 — mismo alcance que goToLevel(n)
+  const nivel = parseInt(new URLSearchParams(location.search).get('nivel'), 10)
+  showLevel(nivel >= 1 && nivel <= 5 ? nivel : 1)
 })
