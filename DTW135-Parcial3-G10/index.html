@@ -50,19 +50,29 @@
     </symbol>
   </svg>
 
-  <!-- HUD fijo en la parte superior -->
-  <div id="hud" class="nes-hud">
-    <div class="hud-col">
-      <span class="hud-label">JUGADOR</span>
-      <span id="hud-score" class="hud-value">000000</span>
+  <!-- Barra superior fija: HUD + navegación de niveles -->
+  <div id="top-bar">
+    <div id="hud" class="nes-hud">
+      <div class="hud-col">
+        <span class="hud-label">JUGADOR</span>
+        <span id="hud-score" class="hud-value">000000</span>
+      </div>
+      <div class="hud-col hud-center">
+        <span id="hud-coins">🪙×00</span>
+        <span id="hud-world">W1-1</span>
+      </div>
+      <div class="hud-col hud-right">
+        <span class="hud-label">VIDAS</span>
+        <span class="hud-value">♥♥♥</span>
+      </div>
     </div>
-    <div class="hud-col hud-center">
-      <span id="hud-coins">🪙×00</span>
-      <span id="hud-world">W1-1</span>
-    </div>
-    <div class="hud-col hud-right">
-      <span class="hud-label">VIDAS</span>
-      <span class="hud-value">♥♥♥</span>
+    <div id="level-nav" class="level-nav">
+      <span class="hud-label">NIVEL</span>
+      <button class="level-nav-btn" data-level="1" title="Saltar al nivel 1">1</button>
+      <button class="level-nav-btn" data-level="2" title="Saltar al nivel 2">2</button>
+      <button class="level-nav-btn" data-level="3" title="Saltar al nivel 3">3</button>
+      <button class="level-nav-btn" data-level="4" title="Saltar al nivel 4">4</button>
+      <button class="level-nav-btn" data-level="5" title="Saltar al nivel 5">5</button>
     </div>
   </div>
 

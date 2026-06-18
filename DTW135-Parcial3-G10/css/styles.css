@@ -8,17 +8,19 @@ body {
   min-height: 100vh;
 }
 
-/* ── HUD ── */
-.nes-hud {
+/* ── TOP BAR (HUD + navegación de niveles) ── */
+#top-bar {
   position: fixed;
   top: 0; left: 0; right: 0;
+  z-index: 200;
+}
+.nes-hud {
   background: #000;
   border-bottom: 3px solid #E52521;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px 16px;
-  z-index: 200;
   font-size: 8px;
 }
 .hud-col { display: flex; flex-direction: column; }
@@ -27,11 +29,42 @@ body {
 .hud-label { color: #fff; }
 .hud-value { color: #FBD000; }
 
+/* ── LEVEL NAV ── */
+.level-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #000;
+  border-bottom: 3px solid #E52521;
+  padding: 6px 16px;
+}
+.level-nav-btn {
+  width: 28px;
+  height: 28px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  background: #2c2c2c;
+  color: #aaa;
+  border: 2px solid #555;
+  cursor: pointer;
+}
+.level-nav-btn.is-current {
+  background: #E52521;
+  color: #fff;
+  border-color: #fff;
+}
+.level-nav-btn.is-completed {
+  background: #43B047;
+  color: #fff;
+  border-color: #fff;
+}
+
 /* ── LEVEL SCREEN ── */
 .level-screen {
   min-height: 100vh;
   background: #5C94FC;
-  padding-top: 52px;
+  padding-top: 92px;
   position: relative;
   overflow-x: hidden;
 }

@@ -30,9 +30,13 @@ Cada nivel debe completarse para desbloquear el siguiente. Al completar un nivel
 
 ## Acceso directo a cualquier nivel (para revisión del docente)
 
-Para que el tutor pueda revisar cualquier nivel sin tener que completar los anteriores, hay dos formas equivalentes de saltar directamente:
+Para que el tutor pueda revisar cualquier nivel sin tener que completar los anteriores, hay tres formas equivalentes de saltar directamente:
 
-**1. Parámetro en la URL** (la más cómoda — no requiere abrir la consola):
+**1. Botones de nivel en la barra superior** (la más visible — no requiere consola ni editar la URL):
+
+Justo debajo del HUD hay una fila `NIVEL [1][2][3][4][5]`, siempre visible en las 5 pantallas. El botón del nivel actual se ve en rojo, los niveles ya completados en verde, y el resto en gris — pero los 5 son clickeables en todo momento. Saltar con estos botones solo cambia de pantalla; no otorga puntaje de los niveles que se omiten.
+
+**2. Parámetro en la URL:**
 
 ```
 http://localhost/<ruta-al-proyecto>/?nivel=3
@@ -40,7 +44,7 @@ http://localhost/<ruta-al-proyecto>/?nivel=3
 
 Reemplazar `3` por el número de nivel deseado (1 a 5). Si no se incluye el parámetro, el juego inicia normalmente en el Nivel 1.
 
-**2. Consola del navegador:**
+**3. Consola del navegador:**
 
 ```js
 goToLevel(3)   // salta directo al nivel 3, sin completar los anteriores

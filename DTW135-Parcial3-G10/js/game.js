@@ -30,6 +30,19 @@ function updateHUD() {
   document.getElementById('hud-world').textContent = WORLD_NAMES[n - 1]
   document.getElementById('hud-coins').textContent =
     `🪙×${String(gameState.coins).padStart(2, '0')}`
+  updateLevelNav()
+}
+
+function updateLevelNav() {
+  document.querySelectorAll('.level-nav-btn').forEach(btn => {
+    const n = parseInt(btn.dataset.level, 10)
+    btn.classList.remove('is-current', 'is-completed')
+    if (n === gameState.current) {
+      btn.classList.add('is-current')
+    } else if (gameState.levels[n - 1].completed) {
+      btn.classList.add('is-completed')
+    }
+  })
 }
 
 function completeLevel(n) {
@@ -93,8 +106,18 @@ window.goToLevel = function(n) {
   if (n >= 1 && n <= 5) showLevel(n)
 }
 
+function initLevelNav() {
+  document.querySelectorAll('.level-nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      Audio.play('click')
+      goToLevel(parseInt(btn.dataset.level, 10))
+    })
+  })
+}
+
 // Inicializar
 document.addEventListener('DOMContentLoaded', () => {
+  initLevelNav()
   // Acceso directo opcional vía URL, ej. ?nivel=3 — mismo alcance que goToLevel(n)
   const nivel = parseInt(new URLSearchParams(location.search).get('nivel'), 10)
   showLevel(nivel >= 1 && nivel <= 5 ? nivel : 1)
