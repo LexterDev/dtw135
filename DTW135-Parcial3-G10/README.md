@@ -50,7 +50,7 @@ Reemplazar `3` por el número de nivel deseado (1 a 5). Si no se incluye el par�
 goToLevel(3)   // salta directo al nivel 3, sin completar los anteriores
 ```
 
-Ambos métodos muestran el nivel completo y funcional (incluyendo niveles ya completados, que conservan su estado final visible).
+Los tres métodos muestran el nivel completo y funcional (incluyendo niveles ya completados, que conservan su estado final visible).
 
 ## Estructura del proyecto
 
