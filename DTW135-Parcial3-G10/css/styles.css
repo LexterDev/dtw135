@@ -36,8 +36,17 @@ body {
   justify-content: center;
   gap: 8px;
   background: #000;
-  border-bottom: 3px solid #E52521;
   padding: 6px 16px;
+}
+.level-nav-hint {
+  background: #000;
+  text-align: center;
+  font-size: 7px;
+  color: rgba(255,255,255,0.7);
+  text-shadow: 1px 1px #000;
+  margin: 0;
+  padding: 0 16px 6px;
+  border-bottom: 3px solid #E52521;
 }
 .level-nav-btn {
   width: 28px;
@@ -64,7 +73,7 @@ body {
 .level-screen {
   min-height: 100vh;
   background: #5C94FC;
-  padding-top: 92px;
+  padding-top: 106px;
   position: relative;
   overflow-x: hidden;
 }
